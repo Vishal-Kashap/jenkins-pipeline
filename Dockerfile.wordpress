@@ -1,0 +1,2 @@
+FROM wordpress:5.2
+# Add any additional configuration or files needed for your WordPress image

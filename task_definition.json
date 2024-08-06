@@ -1,9 +1,9 @@
 {
-    "family": "Wordpress--TDF",
+    "family": "temp1",
     "containerDefinitions": [
         {
             "name": "wordpress",
-            "image": "wordpress:5.2",
+            "image": "637423349100.dkr.ecr.us-east-1.amazonaws.com/pr1:my-wordpress-image",
             "cpu": 0,
             "links": [
                 "mysql"
@@ -51,7 +51,7 @@
         },
         {
             "name": "mysql",
-            "image": "mysql:5",
+            "image": "637423349100.dkr.ecr.us-east-1.amazonaws.com/pr1:my-mysql-image",
             "cpu": 0,
             "portMappings": [],
             "essential": true,
@@ -90,3 +90,4 @@
         "operatingSystemFamily": "LINUX"
     }
 }
+

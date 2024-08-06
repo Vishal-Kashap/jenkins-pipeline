@@ -1,0 +1,2 @@
+FROM mysql:5
+# Add any additional configuration or files needed for your MySQL image

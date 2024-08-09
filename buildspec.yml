@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REPO_URI
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the WordPress Docker image...
+      - docker build -t $WORDPRESS_IMAGE_NAME -f Dockerfile.wordpress .
+      - echo Building the MySQL Docker image...
+      - docker build -t $MYSQL_IMAGE_NAME -f Dockerfile.mysql .
+      - echo Tagging images...
+      - docker tag $WORDPRESS_IMAGE_NAME:latest $ECR_REPO_URI:$WORDPRESS_IMAGE_NAME
+      - docker tag $MYSQL_IMAGE_NAME:latest $ECR_REPO_URI:$MYSQL_IMAGE_NAME
+  post_build:
+    commands:
+      - echo Pushing the WordPress Docker image...
+      - docker push $ECR_REPO_URI:$WORDPRESS_IMAGE_NAME
+      - echo Pushing the MySQL Docker image...
+      - docker push $ECR_REPO_URI:$MYSQL_IMAGE_NAME
+      - echo Build completed on `date`
+
+artifacts:
+  files:
+    - '**/*'

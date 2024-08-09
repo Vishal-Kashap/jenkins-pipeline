@@ -15,8 +15,6 @@ phases:
       - echo Tagging images...
       - docker tag $WORDPRESS_IMAGE_NAME:latest $ECR_REPO_URI:$WORDPRESS_IMAGE_NAME
       - docker tag $MYSQL_IMAGE_NAME:latest $ECR_REPO_URI:$MYSQL_IMAGE_NAME
-      - echo Creating imagedefinitions.json...
-      - printf '[\n  {"name": "wordpress-container", "imageUri": "%s:%s"},\n  {"name": "mysql-container", "imageUri": "%s:%s"}\n]' $ECR_REPO_URI $WORDPRESS_IMAGE_NAME $ECR_REPO_URI $MYSQL_IMAGE_NAME > imagedefinitions.json
   post_build:
     commands:
       - echo Pushing the WordPress Docker image...
@@ -28,4 +26,3 @@ phases:
 artifacts:
   files:
     - '**/*'
-    - imagedefinitions.json

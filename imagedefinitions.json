@@ -1,5 +1,5 @@
 {
-    "family": "temp1",
+    "family": "Wordpress--TDF",
     "containerDefinitions": [
         {
             "name": "wordpress",

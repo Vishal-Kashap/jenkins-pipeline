@@ -18,7 +18,7 @@ phases:
       - docker tag $WORDPRESS_IMAGE_NAME:latest $ECR_REPO_URI:$WORDPRESS_IMAGE_NAME
       - docker tag $MYSQL_IMAGE_NAME:latest $ECR_REPO_URI:$MYSQL_IMAGE_NAME
       - echo Creating imagedefinitions.json...
-      - echo '[{"name":"wordpress","637423349100.dkr.ecr.us-east-1.amazonaws.com/pr1:my-wordpress-image"},{"name":"mysql","637423349100.dkr.ecr.us-east-1.amazonaws.com/pr1:my-mysql-image"}]' > imagedefinitions.json
+      - echo '[{"name":"wordpress","imageUri":"637423349100.dkr.ecr.us-east-1.amazonaws.com/pr1:my-wordpress-image"},{"name":"mysql","imageUri":"637423349100.dkr.ecr.us-east-1.amazonaws.com/pr1:my-mysql-image"}]' > imagedefinitions.json
     post_build:
     commands:
       - echo Pushing the WordPress Docker image...

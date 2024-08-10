@@ -3,6 +3,8 @@ version: 0.2
 phases:
   pre_build:
     commands:
+      - echo Logging in to Docker Hub...
+      - docker login -u vishal231 -p hubvishal123
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REPO_URI
   build:
@@ -16,7 +18,7 @@ phases:
       - docker tag $WORDPRESS_IMAGE_NAME:latest $ECR_REPO_URI:$WORDPRESS_IMAGE_NAME
       - docker tag $MYSQL_IMAGE_NAME:latest $ECR_REPO_URI:$MYSQL_IMAGE_NAME
       - echo Creating imagedefinitions.json...
-      - echo '[{"name":"wordpress","imageUri":"$ECR_REPO_URI:$WORDPRESS_IMAGE_NAME"},{"name":"mysql","imageUri":"$ECR_REPO_URI:$MYSQL_IMAGE_NAME"}]' > imagedefinitions.json
+      - echo '[{"name":"wordpress","637423349100.dkr.ecr.us-east-1.amazonaws.com/pr1:my-wordpress-image"},{"name":"mysql","637423349100.dkr.ecr.us-east-1.amazonaws.com/pr1:my-mysql-image"}]' > imagedefinitions.json
     post_build:
     commands:
       - echo Pushing the WordPress Docker image...
